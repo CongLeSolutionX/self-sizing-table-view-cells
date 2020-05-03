@@ -19,6 +19,7 @@ class AuteurDetailViewController: UIViewController {
   }
 }
 
+//MARK: - TableViewDataSource
 extension AuteurDetailViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return selectedAuteur.films.count
@@ -28,7 +29,7 @@ extension AuteurDetailViewController: UITableViewDataSource {
     let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FilmTableViewCell
     let film = selectedAuteur.films[indexPath.row]
     
-    // adding infor for the cell
+    // adding info for the cell
     cell.filmTitleLabel.text = film.title
     cell.filmImageView.image = UIImage(named: film.poster)
     
@@ -48,7 +49,7 @@ extension AuteurDetailViewController: UITableViewDataSource {
   }
 }
 
-//MARK: UITableViewDelegate
+//MARK: - UITableViewDelegate
 extension AuteurDetailViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     // ge tthe reference of the cell at the selected indexPAth and downcast into FilmTableViewCell

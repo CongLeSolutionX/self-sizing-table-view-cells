@@ -13,10 +13,11 @@ class AuteurListViewController: UIViewController {
     tableView.rowHeight = UITableView.automaticDimension
     tableView.estimatedRowHeight = 600
     
+    // configure the navigation title
     navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 34, weight: .bold) ]
     navigationItem.largeTitleDisplayMode = .automatic
   }
-  
+  // forwardly connecting to AuteurDetailViewController
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if let destination = segue.destination as? AuteurDetailViewController,
       let indexPath = tableView.indexPathForSelectedRow {
@@ -24,12 +25,12 @@ class AuteurListViewController: UIViewController {
     }
   }
 }
-
+// MARK: - TableViewDataSource
 extension AuteurListViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return auteurs.count
   }
- 
+  
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! AuteurTableViewCell
     
@@ -46,7 +47,7 @@ extension AuteurListViewController: UITableViewDataSource {
     cell.source.font = UIFont.italicSystemFont(ofSize: cell.source.font.pointSize)
     cell.nameLabel.textAlignment = .center
     cell.selectionStyle = .none
-    // make the image cicle
+    // make the image circle
     cell.auteurImageView.layer.cornerRadius = cell.auteurImageView.frame.size.width / 2
     return cell
   }
